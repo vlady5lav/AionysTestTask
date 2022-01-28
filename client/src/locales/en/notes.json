@@ -1,0 +1,40 @@
+{
+  "error": {
+    "input": "You must input only digits!",
+    "empty": "Empty"
+  },
+  "title": {
+    "note": "Note",
+    "notes": "My Notes",
+    "paginatedNotes": "Paginated notes",
+    "notesFinder": "Notes Finder"
+  },
+  "properties": {
+    "title": "Title",
+    "description": "Description",
+    "typeId": "Type",
+    "pictureFileName": "Picture File Name"
+  },
+  "placeholder": {
+    "title": "Enter Title (more than 3 symbols required)",
+    "description": "Enter Description",
+    "typeId": "Choose Type",
+    "pictureFileName": "Enter Picture File Name",
+    "search": "Enter desired ID",
+    "id": "Id"
+  },
+  "type": {
+    "undefined": "Undefined",
+    "home": "Home",
+    "work": "Work",
+    "private": "Private"
+  },
+  "action": {
+    "create": "Create Note",
+    "delete": "Delete Note",
+    "edit": "Edit Note",
+    "search": "Notes Finder"
+  },
+  "submit": "Submit",
+  "save": "Save"
+}

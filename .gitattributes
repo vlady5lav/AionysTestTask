@@ -1,0 +1,206 @@
+###############################################################################
+# Git Line Endings
+###############################################################################
+
+###############################################################################
+# Set default behavior to automatically normalize line endings.
+###############################################################################
+
+* text=auto eol=lf
+
+###############################################################################
+# Force development files to always use LF line endings.
+###############################################################################
+
+*.cake text eol=lf
+*.cjs text eol=lf
+*.cjsx text eol=lf
+*.cs text eol=lf
+*.css text eol=lf
+*.cssx text eol=lf
+*.csx text eol=lf
+*.cts text eol=lf
+*.ctsx text eol=lf
+*.default text eol=lf
+*.defaults text eol=lf
+*.htm text eol=lf
+*.html text eol=lf
+*.js text eol=lf
+*.jsm text eol=lf
+*.json text eol=lf
+*.json5 text eol=lf
+*.jsx text eol=lf
+*.less text eol=lf
+*.manifest text eol=lf
+*.mjs text eol=lf
+*.mjsx text eol=lf
+*.mts text eol=lf
+*.mtsx text eol=lf
+*.pcss text eol=lf
+*.sass text eol=lf
+*.scss text eol=lf
+*.svg text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.vb text eol=lf
+*.vbx text eol=lf
+*.vue text eol=lf
+*.webmanifest text eol=lf
+*.xaml text eol=lf
+*.xhtm text eol=lf
+*.xhtml text eol=lf
+*.xml text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+.dockerignore text eol=lf
+.editorconfig text eol=lf
+.gitattributes text eol=lf
+.gitignore text eol=lf
+Dockerfile text eol=lf
+Makefile text eol=lf
+
+###############################################################################
+# Force ASP.NET Web files to always use CRLF line endings.
+###############################################################################
+
+*.asp text eol=crlf
+*.aspx text eol=crlf
+*.cshtm text eol=crlf
+*.cshtml text eol=crlf
+
+###############################################################################
+# Force Visual Studio files to always use CRLF line endings.
+###############################################################################
+
+*.csproj text eol=crlf
+*.proj text eol=crlf
+*.projitems text eol=crlf
+*.shproj text eol=crlf
+*.sln text eol=crlf
+*.vbproj text eol=crlf
+*.vcxproj text eol=crlf
+
+###############################################################################
+# Force windows batch scripts to always use CRLF line endings so that if a repo
+# is accessed in Windows via a file share from Linux, the scripts will work.
+###############################################################################
+
+*.{cmd,[Cc][Mm][Dd]} text eol=crlf
+*.{bat,[Bb][Aa][Tt]} text eol=crlf
+
+###############################################################################
+# Force linux bash scripts to always use LF line endings so that if a repo is
+# accessed in Unix via a file share from Windows, the scripts will work.
+###############################################################################
+
+*.{sh,[Ss][Hh]} text eol=lf
+*.{conf,[Cc]onf} text eol=lf
+
+###############################################################################
+# Set default behavior for command prompt diff.
+#
+# This is need for earlier builds of msysgit that does not have it on by
+# default for csharp files.
+#
+# Note: This is only used by command line.
+###############################################################################
+
+#*.{cs,[Cc][Ss]} diff=csharp
+
+###############################################################################
+# Set the merge driver for project and solution files.
+#
+# Merging from the command prompt will add diff markers to the files if there
+# are conflicts (Merging from VS is not affected by the settings below, in VS
+# the diff markers are never inserted). Diff markers may cause the following
+# file extensions to fail to load in VS. An alternative would be to treat
+# these files as binary and thus will always conflict and require user
+# intervention with every merge. To do so, just uncomment the entries below.
+###############################################################################
+
+#*.sln merge=binary
+#*.csproj merge=binary
+#*.vbproj merge=binary
+#*.vcxproj merge=binary
+#*.vcproj merge=binary
+#*.dbproj merge=binary
+#*.fsproj merge=binary
+#*.lsproj merge=binary
+#*.wixproj merge=binary
+#*.modelproj merge=binary
+#*.sqlproj merge=binary
+#*.wwaproj merge=binary
+
+###############################################################################
+# Behavior for image files.
+#
+# Image files are treated as binary by default.
+###############################################################################
+
+#*.bmp binary
+#*.gif binary
+#*.ico binary
+#*.jpeg binary
+#*.jpg binary
+#*.png binary
+#*.psd binary
+#*.webp binary
+
+###############################################################################
+# Diff behavior for common document formats.
+#
+# Convert binary document formats to text before diffing them. This feature
+# is only available from the command line. Turn it on by uncommenting the
+# entries below.
+###############################################################################
+
+#*.DOC diff=astextplain
+#*.DOCX diff=astextplain
+#*.DOT diff=astextplain
+#*.PDF diff=astextplain
+#*.RTF diff=astextplain
+#*.doc diff=astextplain
+#*.docx diff=astextplain
+#*.dot diff=astextplain
+#*.pdf diff=astextplain
+#*.rtf diff=astextplain
+
+###############################################################################
+# Git Large File System (LFS)
+###############################################################################
+
+# Archives
+#*.7z filter=lfs diff=lfs merge=lfs -text
+#*.br filter=lfs diff=lfs merge=lfs -text
+#*.gz filter=lfs diff=lfs merge=lfs -text
+#*.rar filter=lfs diff=lfs merge=lfs -text
+#*.tar filter=lfs diff=lfs merge=lfs -text
+#*.zip filter=lfs diff=lfs merge=lfs -text
+
+# Documents
+#*.pdf filter=lfs diff=lfs merge=lfs -text
+
+# Fonts
+#*.eot filter=lfs diff=lfs merge=lfs -text
+#*.otf filter=lfs diff=lfs merge=lfs -text
+#*.ttf filter=lfs diff=lfs merge=lfs -text
+#*.woff filter=lfs diff=lfs merge=lfs -text
+#*.woff2 filter=lfs diff=lfs merge=lfs -text
+
+# Images
+#*.gif filter=lfs diff=lfs merge=lfs -text
+#*.ico filter=lfs diff=lfs merge=lfs -text
+#*.jpg filter=lfs diff=lfs merge=lfs -text
+#*.png filter=lfs diff=lfs merge=lfs -text
+#*.psd filter=lfs diff=lfs merge=lfs -text
+#*.webp filter=lfs diff=lfs merge=lfs -text
+
+# Other
+#*.exe filter=lfs diff=lfs merge=lfs -text
+#*.msi filter=lfs diff=lfs merge=lfs -text
+
+# Video
+#*.avi filter=lfs diff=lfs merge=lfs -text
+#*.mkv filter=lfs diff=lfs merge=lfs -text
+#*.mp4 filter=lfs diff=lfs merge=lfs -text
+#*.webm filter=lfs diff=lfs merge=lfs -text

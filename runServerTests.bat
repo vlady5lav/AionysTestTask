@@ -1,0 +1,2 @@
+dotnet test server/
+pause
