@@ -16,7 +16,7 @@ You will also see any lint errors in the console.
 
 ### `npm run ci`
 
-Launches the client application and starting CYPRESS test runner in the interactive mode.\
+Launches the client application and starts CYPRESS test runner in the interactive mode.
 
 ### `npm test`
 

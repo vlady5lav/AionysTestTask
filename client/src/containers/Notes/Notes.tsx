@@ -1,5 +1,4 @@
-import { Grid } from '@mui/material';
-import { CreateNoteCard } from 'components';
+import { Box, Grid } from '@mui/material';
 import { observer } from 'mobx-react';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,30 +11,31 @@ const Notes = observer(() => {
   const { t } = useTranslation(['notes']);
 
   useEffect(() => {
-    const getNotes = () => {
-      store.getAll();
+    const getNotes = async () => {
+      await store.getAll();
     };
     getNotes();
-  }, [store]);
+  }, [store, store.count]);
 
   return (
-    <Grid container justifyContent="center" margin={2} padding={2}>
+    <Grid container justifyContent="center">
       {store.isLoading ? (
-        <LoadingSpinner />
+        <Box className="absoluteCentered">
+          <LoadingSpinner />
+        </Box>
       ) : (
         <>
-          <Grid key={Math.random() * 12345} container justifyContent="center" margin={2} padding={2}>
+          <Grid key={Math.random() * 12345} container justifyContent="center" margin={2} mt={6}>
             <h1>{t('title.notes')}</h1>
           </Grid>
-          <Grid key={Math.random() * 12345} container justifyContent="center" margin={2} padding={2}>
-            <Grid key={Math.random() * 12345} item margin={2} padding={2}>
-              <CreateNoteCard />
-            </Grid>
-            {store.notes?.map((note, key) => (
-              <Grid key={key} item margin={2} padding={2}>
-                <NoteCard note={{ ...note }} />
-              </Grid>
-            ))}
+          <Grid key={Math.random() * 12345} container justifyContent="center" margin={2}>
+            {store.count! > 0
+              ? store.notes?.map((note, key) => (
+                  <Grid key={key} item margin={2}>
+                    <NoteCard note={{ ...note }} />
+                  </Grid>
+                ))
+              : null}
           </Grid>
         </>
       )}

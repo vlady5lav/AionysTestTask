@@ -20,7 +20,9 @@ const CreateNote = observer(() => {
   return (
     <Grid container justifyContent="center" mt={4}>
       {store.isLoading ? (
-        <LoadingSpinner />
+        <Box className="absoluteCentered">
+          <LoadingSpinner />
+        </Box>
       ) : (
         <>
           <Grid item xs={10} sm={8} md={6} lg={4} xl={4}>

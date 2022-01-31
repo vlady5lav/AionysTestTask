@@ -28,7 +28,9 @@ const EditNote = observer(() => {
   return (
     <Grid container justifyContent="center" mt={4}>
       {store.isLoading ? (
-        <LoadingSpinner />
+        <Box className="absoluteCentered">
+          <LoadingSpinner />
+        </Box>
       ) : (
         <>
           <Grid item xs={10} sm={8} md={6} lg={4} xl={4}>
@@ -48,6 +50,8 @@ const EditNote = observer(() => {
                 </Grid>
                 <TextField
                   required
+                  multiline
+                  rows={2}
                   name={t('properties.title')}
                   label={t('properties.title')}
                   variant="outlined"
@@ -66,7 +70,6 @@ const EditNote = observer(() => {
                   onChange={(ev: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
                     store.changeTypeId(Number(ev.target.value));
                   }}
-                  helperText={t('placeholder.typeId')}
                 >
                   <MenuItem key={Math.random() * 123} value={0}>
                     {t(`type.${NoteType[0].toLowerCase()}`)}
@@ -82,6 +85,8 @@ const EditNote = observer(() => {
                   </MenuItem>
                 </TextField>
                 <TextField
+                  multiline
+                  rows={10}
                   name={t('properties.description')}
                   label={t('properties.description')}
                   variant="outlined"

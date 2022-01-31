@@ -1,8 +1,9 @@
-import { CssBaseline } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import { configure } from 'mobx';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'reflect-metadata';
+import darkTheme from 'themes/Dark';
 import { App } from './containers';
 import { IoCContainer, IoCProvider } from './ioc';
 //import reportWebVitals from './reportWebVitals';
@@ -15,8 +16,10 @@ configure({
 ReactDOM.render(
   <React.StrictMode>
     <IoCProvider container={IoCContainer}>
-      <CssBaseline />
-      <App />
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
     </IoCProvider>
   </React.StrictMode>,
   document.getElementById('root')

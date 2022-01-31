@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import i18n from '../../locales/config';
 
 export const LanguageChangerButton = observer(() => {
-  const [language, setLanguage] = useState<'en' | 'ru'>('en');
+  const [language, setLanguage] = useState<'en' | 'ru'>('ru');
 
   const handleChange = () => {
     let lang: 'en' | 'ru' = language === 'en' ? 'ru' : 'en';
@@ -13,13 +13,7 @@ export const LanguageChangerButton = observer(() => {
   };
 
   return (
-    <Button
-      className="langSwitcher"
-      variant="contained"
-      color="warning"
-      value={language}
-      onClick={() => handleChange()}
-    >
+    <Button className="langSwitcher" variant="contained" color="info" value={language} onClick={() => handleChange()}>
       {language.toUpperCase()}
     </Button>
   );

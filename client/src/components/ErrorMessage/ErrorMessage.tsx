@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import React, { ReactElement } from 'react';
 
 interface Props {
@@ -5,7 +6,11 @@ interface Props {
 }
 
 const ErrorMessage = (props: Props): ReactElement => {
-  return <p style={{ color: 'red', fontSize: 14, fontWeight: 700 }}>{props.error ?? null}</p>;
+  return (
+    <Typography maxWidth={620} style={{ color: 'red', fontSize: 14, fontWeight: 700, overflowWrap: 'break-word' }}>
+      {props.error ?? null}
+    </Typography>
+  );
 };
 
 export default ErrorMessage;

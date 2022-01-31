@@ -1,7 +1,8 @@
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import DescriptionIcon from '@mui/icons-material/Description';
 import SearchIcon from '@mui/icons-material/Search';
-import { AppBar, Badge, Button, Container, Stack, Toolbar, Typography } from '@mui/material';
+import { AppBar, Badge, Button, Container, Stack, Toolbar } from '@mui/material';
 import LanguageChangerButton from 'components/LanguageChangerButton';
 import { IoCTypes, useInjection } from 'ioc';
 import { observer } from 'mobx-react';
@@ -18,12 +19,21 @@ const Header = observer(() => {
   return (
     <AppBar position="static">
       <Container>
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <Typography>AIONYS NOTES</Typography>
-          <Stack direction="row" spacing={2}>
-            <Badge badgeContent={store.count}>
+        <Toolbar sx={{ justifyContent: 'center' }}>
+          <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={6}>
+            <Button
+              className="createNoteButton"
+              color="success"
+              onClick={() => navigate('/notes/create', { replace: true })}
+              startIcon={<AddCircleIcon />}
+              variant="contained"
+            >
+              {t('create')}
+            </Button>
+            <Badge color="secondary" badgeContent={store.count}>
               <Button
-                color="secondary"
+                className="allNotesButton"
+                color="warning"
                 onClick={() => navigate('/notes')}
                 endIcon={<DescriptionIcon />}
                 variant="contained"
@@ -32,16 +42,18 @@ const Header = observer(() => {
               </Button>
             </Badge>
             <Button
+              className="paginatedNotesButton"
               color="secondary"
-              onClick={() => navigate('/notes/paginated')}
+              onClick={() => navigate('/notes/paginated', { replace: true })}
               endIcon={<AutoStoriesIcon />}
               variant="contained"
             >
               {t('paginatedNotes')}
             </Button>
             <Button
-              color="secondary"
-              onClick={() => navigate('/notes/finder')}
+              className="notesFinderButton"
+              color="error"
+              onClick={() => navigate('/notes/finder', { replace: true })}
               endIcon={<SearchIcon />}
               variant="contained"
             >

@@ -12,27 +12,25 @@ export default class NotesStore {
   private readonly notesService!: NotesService;
 
   isLoading = false;
-  notes: Note[] | null = null;
+  notes: Note[] = [];
   note: Note | null = null;
-  error: string | null = null;
-  count = 0;
+  error = '';
+  queryString = '';
+  count: number | undefined = undefined;
   totalPages = 0;
   currentPage = 1;
-  pageLimit = 10;
-  queryString = '';
+  pageLimit = 8;
 
   constructor() {
     makeAutoObservable(this);
   }
 
   public init = () => {
-    this.error = null;
+    this.error = '';
     this.note = null;
   };
 
-  public getAll = async () => {
-    this.count = 0;
-    this.notes = null;
+  public getAll = async (): Promise<number | undefined> => {
     this.init();
     try {
       this.isLoading = true;
@@ -41,13 +39,15 @@ export default class NotesStore {
       this.count = result.data.length;
     } catch (e) {
       if (e instanceof Error) {
+        console.log(e.message);
         this.error = e.message;
       }
     }
     this.isLoading = false;
+    return this.count;
   };
 
-  public getById = async (id: number) => {
+  public getById = async (id: number): Promise<number | undefined> => {
     this.init();
     try {
       this.isLoading = true;
@@ -55,28 +55,30 @@ export default class NotesStore {
       this.note = { ...result };
     } catch (e) {
       if (e instanceof Error) {
+        console.log(e.message);
         this.error = e.message;
       }
     }
     this.isLoading = false;
+    return this.note?.id;
   };
 
-  public getPaginated = async (index: number, size = 5) => {
+  public getPaginated = async (index: number, size = this.pageLimit) => {
+    this.init();
     const urlParams = new URLSearchParams(window.location.search);
     const page = urlParams.get('_page');
     this.currentPage = Number(index ?? this.currentPage);
-    this.pageLimit = size;
-
     try {
       this.isLoading = true;
       const result = await this.notesService.getByPage({
         pageIndex: (page ? Number(page) : this.currentPage) - 1,
-        pageSize: Number(this.pageLimit),
+        pageSize: Number(size),
       });
       this.notes = result.data;
       this.totalPages = result.total_pages;
     } catch (e) {
       if (e instanceof Error) {
+        console.log(e.message);
         console.error(e.message);
       }
     }
@@ -88,7 +90,7 @@ export default class NotesStore {
     try {
       this.isLoading = true;
       const id = Number(this.queryString);
-      if (id === NaN) {
+      if (isNaN(id)) {
         this.queryString = '';
         this.error = i18n.t('notes:error.input');
         return;
@@ -97,6 +99,7 @@ export default class NotesStore {
       this.note = { ...result };
     } catch (e) {
       if (e instanceof Error) {
+        console.log(e.message);
         this.queryString = '';
         this.error = e.message;
       }

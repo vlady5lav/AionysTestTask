@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import NotesFinder from 'containers/NotesFinder';
 import NotesPaginated from 'containers/NotesPaginated';
 import { observer } from 'mobx-react';
@@ -14,7 +15,13 @@ const EditNote = React.lazy(() => import('../containers/EditNote'));
 
 const AppRoutes = observer(() => {
   return (
-    <Suspense fallback={<LoadingSpinner />}>
+    <Suspense
+      fallback={
+        <Box className="absoluteCentered">
+          <LoadingSpinner />
+        </Box>
+      }
+    >
       <BrowserRouter>
         <Routes>
           <Route path="*" element={<Navigate replace to="/notes" />} />

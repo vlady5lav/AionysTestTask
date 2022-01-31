@@ -18,6 +18,17 @@ public class NotesRepository : INotesRepository
 
     public int? Add(string title, int? typeId, string? description, string? pictureFileName)
     {
+        int? noteType = 0;
+
+        if (typeId != null && typeId > -1 && typeId < 4)
+        {
+            noteType = typeId;
+        }
+        else
+        {
+            noteType = 0;
+        }
+
         var newId = _notes.LastOrDefault()?.Id + 1 ?? 0;
 
         var addItem = new Note()
@@ -26,7 +37,7 @@ public class NotesRepository : INotesRepository
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow,
             Title = title,
-            TypeId = typeId,
+            TypeId = noteType,
             Description = description,
             PictureFileName = pictureFileName,
         };
@@ -65,9 +76,20 @@ public class NotesRepository : INotesRepository
 
         if (updateItem != null)
         {
+            int? noteType = 0;
+
+            if (typeId != null && typeId > -1 && typeId < 4)
+            {
+                noteType = (int)typeId;
+            }
+            else
+            {
+                noteType = updateItem.TypeId;
+            }
+
             updateItem.Title = title ?? updateItem.Title;
             updateItem.UpdatedAt = DateTime.UtcNow;
-            updateItem.TypeId = typeId ?? updateItem.TypeId;
+            updateItem.TypeId = noteType;
             updateItem.Description = description ?? updateItem.Description;
             updateItem.PictureFileName = pictureFileName ?? updateItem.PictureFileName;
 
@@ -82,7 +104,7 @@ public class NotesRepository : INotesRepository
     public IEnumerable<Note>? GetAll()
     {
         var result = _notes
-            .OrderBy(n => n.UpdatedAt)
+            .OrderByDescending(n => n.UpdatedAt)
             .ToList();
 
         if (result != null && result.Any())
@@ -107,7 +129,7 @@ public class NotesRepository : INotesRepository
         var totalItems = _notes.Count;
 
         var result = _notes
-            .OrderBy(n => n.UpdatedAt)
+            .OrderByDescending(n => n.UpdatedAt)
             .Skip(pageSize * pageIndex)
             .Take(pageSize)
             .ToList();

@@ -14,7 +14,7 @@ import {
   CardHeader,
   Collapse,
   IconButton,
-  Typography,
+  TextField,
 } from '@mui/material';
 import i18n from 'locales/config';
 import { observer } from 'mobx-react';
@@ -61,27 +61,38 @@ export const NoteCard = observer((props: Props) => {
   let type = NoteType[typeId ?? 0].toLowerCase();
 
   return (
-    <Card className="noteCard" sx={{ width: 310 }}>
+    <Card className="noteCard" sx={{ width: 350, maxWidth: 350, padding: 1.5 }}>
       <CardHeader
+        sx={{ height: 50, maxHeight: 50, padding: 1.5 }}
         avatar={<Avatar src={`${pictureUrl}`} />}
         action={
-          <IconButton className="gotoNoteButton" onClick={() => navigate(`/notes/${id}`, { replace: true })}>
+          <IconButton className="goToNoteButton" onClick={() => navigate(`/notes/${id}`, { replace: true })}>
             <MoreVertIcon />
           </IconButton>
         }
         title={updated}
         subheader={t(`type.${type}`)}
       />
-      <CardContent sx={{ textAlign: 'center' }}>
-        <Typography>{title}</Typography>
+      <CardContent sx={{ height: 120, maxHeight: 120, padding: 1.5 }}>
+        <TextField
+          InputProps={{
+            readOnly: true,
+          }}
+          fullWidth
+          id="outlined-multiline-static"
+          label={t(`properties.title`)}
+          multiline
+          rows={3}
+          value={title}
+        />
       </CardContent>
-      <CardActions sx={{ justifyContent: 'space-between' }}>
+      <CardActions sx={{ justifyContent: 'space-between', height: 50, maxHeight: 50, padding: 1.5 }}>
         <ButtonGroup>
           <Button
             className="deleteNoteButton"
             onClick={() => {
               store.delete(id);
-              navigate('/'), { replace: true };
+              navigate('/notes'), { replace: true };
             }}
           >
             <DeleteIcon />
@@ -105,7 +116,17 @@ export const NoteCard = observer((props: Props) => {
       </CardActions>
       <Collapse in={expanded} unmountOnExit>
         <CardContent>
-          <Typography textAlign="justify">{description}</Typography>
+          <TextField
+            InputProps={{
+              readOnly: true,
+            }}
+            fullWidth
+            id="outlined-multiline-static"
+            label={t(`properties.description`)}
+            multiline
+            rows={10}
+            value={description}
+          />
         </CardContent>
       </Collapse>
     </Card>

@@ -16,29 +16,29 @@ export default class NoteStore {
 
   isLoading = false;
   note: Note | null = null;
-  error: string | null = null;
+  error = '';
   title = '';
-  typeId = 0;
   description = '';
   pictureFileName = '';
-  id: number | null = null;
+  typeId: number | undefined = undefined;
+  id: number | undefined = undefined;
 
   constructor() {
     makeAutoObservable(this);
   }
 
   public init = () => {
-    this.id = null;
-    this.error = null;
+    this.id = undefined;
+    this.error = '';
     this.note = null;
   };
 
   public getFields = async (id: number) => {
+    this.init();
     this.title = '';
-    this.typeId = 0;
+    this.typeId = undefined;
     this.description = '';
     this.pictureFileName = '';
-    this.init();
     try {
       this.isLoading = true;
       this.note = await this.notesService.getById(id);
@@ -48,6 +48,7 @@ export default class NoteStore {
       this.pictureFileName = this.note.pictureUrl?.substring(this.note.pictureUrl?.lastIndexOf('/') + 1)!;
     } catch (e) {
       if (e instanceof Error) {
+        console.log(e.message);
         this.error = e.message;
       }
     }
@@ -64,13 +65,14 @@ export default class NoteStore {
         Description: this.description,
         PictureFileName: this.pictureFileName,
       });
-      await this.notesStore.getAll();
       this.id = result.id;
     } catch (e) {
       if (e instanceof Error) {
+        console.log(e.message);
         this.error = e.message;
       }
     }
+    this.notesStore.count !== undefined ? (this.notesStore.count += 1) : (this.notesStore.count = 1);
     this.isLoading = false;
   };
 
@@ -86,6 +88,7 @@ export default class NoteStore {
       });
     } catch (e) {
       if (e instanceof Error) {
+        console.log(e.message);
         if (e.message.match('JSON')) {
           this.id = id;
         } else {
@@ -101,10 +104,14 @@ export default class NoteStore {
     try {
       this.isLoading = true;
       await this.notesService.delete(id);
-      await this.notesStore.getAll();
     } catch (e) {
       if (e instanceof Error) {
-        this.error = e.message;
+        console.log(e.message);
+        if (e.message.match('JSON')) {
+          this.notesStore.count !== undefined ? (this.notesStore.count -= 1) : null;
+        } else {
+          this.error = e.message;
+        }
       }
     }
     this.isLoading = false;

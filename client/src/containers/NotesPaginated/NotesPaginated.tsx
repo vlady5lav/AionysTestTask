@@ -1,5 +1,5 @@
-import { Grid } from '@mui/material';
-import { CreateNoteCard, Pagination } from 'components';
+import { Box, Grid } from '@mui/material';
+import { Pagination } from 'components';
 import { observer } from 'mobx-react';
 import React, { ChangeEvent, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,20 +21,19 @@ const NotesPaginated = observer(() => {
   }, [store, store.currentPage]);
 
   return (
-    <Grid container justifyContent="center" margin={2} padding={2}>
+    <Grid container justifyContent="center">
       {store.isLoading ? (
-        <LoadingSpinner />
+        <Box className="absoluteCentered">
+          <LoadingSpinner />
+        </Box>
       ) : (
         <>
-          <Grid key={Math.random() * 12345} container justifyContent="center" margin={2} padding={2}>
+          <Grid key={Math.random() * 12345} container justifyContent="center" margin={2} mt={6}>
             <h1>{t('title.notes')}</h1>
           </Grid>
-          <Grid key={Math.random() * 12345} container justifyContent="center" margin={2} padding={2}>
-            <Grid key={Math.random() * 12345} item margin={2} padding={2}>
-              <CreateNoteCard />
-            </Grid>
+          <Grid key={Math.random() * 12345} container justifyContent="center" margin={2}>
             {store.notes?.map((note, key) => (
-              <Grid key={key} item margin={2} padding={2}>
+              <Grid key={key} item margin={2}>
                 <NoteCard note={{ ...note }} />
               </Grid>
             ))}
@@ -48,7 +47,7 @@ const NotesPaginated = observer(() => {
           onChange={(event: ChangeEvent<unknown>, value: number) => {
             store.changePage(value);
             {
-              value != 1
+              value !== 1
                 ? navigate(`/notes/paginated?_page=${value}`, { replace: true })
                 : navigate(`/notes/paginated`, { replace: true });
             }
