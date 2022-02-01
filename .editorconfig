@@ -12,7 +12,7 @@ tab_width=4
 trim_trailing_whitespace=true
 
 # ASP.NET Web files
-[*.{asp,asp.*,apsx,aspx.*,cshtm,cshtm.*,cshtml,cshtml.*}]
+[*.{asp,apsx,cshtml,vbhtml}]
 charset=utf-8
 end_of_line=crlf
 indent_style=space
@@ -22,7 +22,7 @@ tab_width=2
 trim_trailing_whitespace=true
 
 # Configuration files
-[*.{config,config.*,manifest,manifest.*,nuspec,nuspec.*,props,props.*,resx,resx.*,ruleset,ruleset.*,targets,targets.*,vsixmanifest,vsixmanifest.*,vsct,vsct.*}]
+[*.{config,manifest,nuspec,props,resx,ruleset,targets,vsixmanifest,vsct}]
 charset=utf-8
 end_of_line=lf
 indent_style=space
@@ -42,7 +42,7 @@ tab_width=2
 trim_trailing_whitespace=true
 
 # Linux Bash & Configuration files
-[*.{conf,conf.*,sh,sh.*}]
+[*.{conf,sh}]
 charset=utf-8
 end_of_line=lf
 indent_style=space
@@ -72,7 +72,7 @@ tab_width=2
 trim_trailing_whitespace=true
 
 # Visual Studio Project files
-[*.{csproj,csproj.*,proj,proj.*,projitems,projitems.*,shproj,shproj.*,vbproj,vbproj.*,vcxproj,vcxproj.*,vcxproj.filters}]
+[*.{csproj,proj,projitems,shproj,vbproj,vcxproj,vcxproj.filters,vcxproj.*}]
 charset=utf-8
 end_of_line=crlf
 indent_style=space
@@ -151,8 +151,8 @@ insert_final_newline=true
 tab_width=4
 trim_trailing_whitespace=true
 
-# .gitattributes, .editorconfig, .*ignore files
-[.{dockerignore,dockerignore.*,editorconfig,editorconfig.*,gitattributes,gitattributes.*,gitignore,gitignore.*}]
+# .dockerignore, .editorconfig, .gitattributes, .gitignore files
+[.{dockerignore,editorconfig,gitattributes,gitignore}]
 charset=utf-8
 end_of_line=lf
 indent_style=space

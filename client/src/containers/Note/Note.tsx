@@ -22,7 +22,7 @@ const Note = observer(() => {
       }
     };
     getNote();
-  }, [store, id]);
+  }, [store, id, navigate]);
 
   return (
     <Grid container justifyContent="center">

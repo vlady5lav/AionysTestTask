@@ -1,0 +1,41 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch .NET Server (WEB)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/server/NotesManager/NotesManager.Host/bin/Debug/net6.0/NotesManager.Host.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/server/NotesManager/NotesManager.Host",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(http?://\\S+)",
+        "uriFormat": "%s/swagger"
+      },
+      "launchSettingsFilePath": "${workspaceFolder}/server/NotesManager/NotesManager.Host/Properties/launchSettings.json",
+      "launchSettingsProfile": "NotesManager.Host",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5050, https://localhost:5051"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/server/NotesManager/NotesManager.Host/Views"
+      }
+    },
+    {
+      "name": "Launch React Client (NPM)",
+      "request": "launch",
+      "runtimeArgs": ["run", "start"],
+      "runtimeExecutable": "npm",
+      "skipFiles": ["client/<node_internals>/**"],
+      "type": "pwa-node",
+      "console": "integratedTerminal",
+      "envFile": "${workspaceFolder}/client/.env",
+      "localRoot": "${workspaceFolder}/client",
+      "cwd": "${workspaceFolder}/client"
+    }
+  ]
+}

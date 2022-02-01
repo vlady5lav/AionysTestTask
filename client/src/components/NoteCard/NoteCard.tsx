@@ -64,7 +64,7 @@ export const NoteCard = observer((props: Props) => {
     <Card className="noteCard" sx={{ width: 350, maxWidth: 350, padding: 1.5 }}>
       <CardHeader
         sx={{ height: 50, maxHeight: 50, padding: 1.5 }}
-        avatar={<Avatar src={`${pictureUrl}`} />}
+        avatar={<Avatar className="inverted" src={`${pictureUrl}`} />}
         action={
           <IconButton className="goToNoteButton" onClick={() => navigate(`/notes/${id}`, { replace: true })}>
             <MoreVertIcon />
